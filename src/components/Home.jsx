@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Content from "./Content";
 
 export default function Home() {
-  const [dark, setDark] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
+
+  const [dark, setDark] = useState(() => {
+    const saved = localStorage.getItem("dark-mode");
+    return saved === null
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : saved === "true";
+  });
 
   useEffect(() => {
     const html = document.documentElement;
@@ -14,16 +20,17 @@ export default function Home() {
     } else {
       html.classList.remove("dark");
     }
-  }, [dark])
+    localStorage.setItem("dark-mode", dark);
+  }, [dark]);
 
   return (
-    <div className={`${dark ? "dark" : ""}`}>
+    <div>
       <div className="flex h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-colors">
         <Sidebar collapsed={collapsed} />
         <div className="flex-1 flex flex-col">
-          <Header 
-            onToggleDark={() => setDark(!dark)} 
-            onToggleSidebar={() => setCollapsed(!collapsed)} 
+          <Header
+            onToggleSidebar={() => setCollapsed(!collapsed)}
+            onToggleDark={() => setDark(!dark)}
           />
           <Content />
         </div>

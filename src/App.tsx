@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import './index.css';
-import './i18n'; 
+
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 

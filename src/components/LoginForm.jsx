@@ -19,17 +19,17 @@ export default function LoginForm() {
     setErro("");
 
     try {
-        const response = await fetch("/api/token", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams({
-              username: email,
-              password: senha,
-              grant_type: "password",
-            }),
-          });
+      const response = await fetch("/api/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          username: email,
+          password: senha,
+          grant_type: "password",
+        }),
+      });
 
       if (!response.ok) throw new Error("Usuário ou senha inválidos");
 
@@ -43,9 +43,9 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Esquerda - Imagem */}
-      <div className="hidden md:flex w-1/2 bg-blue-100 items-center justify-center">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+      {/* Esquerda - Imagem (esconde em telas pequenas) */}
+      <div className="hidden md:flex md:w-1/2 bg-blue-100 items-center justify-center">
         <img
           src="https://cdni.iconscout.com/illustration/premium/thumb/user-login-4268415-3551762.png"
           alt="Login Illustration"
@@ -54,8 +54,8 @@ export default function LoginForm() {
       </div>
 
       {/* Direita - Formulário */}
-      <div className="flex w-full md:w-1/2 items-center justify-center p-10">
-        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6 bg-white p-8 rounded shadow">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-10">
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6 bg-white p-6 md:p-8 rounded shadow">
           <div>
             <h2 className="text-2xl font-bold text-gray-800">Sign in to your Account</h2>
             <p className="text-sm text-gray-500">Welcome back! Please enter your detail</p>

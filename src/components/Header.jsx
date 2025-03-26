@@ -1,7 +1,7 @@
 import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-export default function Header({ onToggleDark, onToggleSidebar }) {
+export default function Header({ onToggleSidebar, onToggleDark }) {
   const { i18n } = useTranslation();
 
   return (
