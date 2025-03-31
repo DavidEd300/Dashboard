@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import Content from "./Content";
 
 export default function Home() {
   const [collapsed, setCollapsed] = useState(true);
@@ -32,7 +31,10 @@ export default function Home() {
             onToggleSidebar={() => setCollapsed(!collapsed)}
             onToggleDark={() => setDark(!dark)}
           />
-          <Content />
+          <main className="flex-1 p-6">
+            <h1 className="text-2xl font-bold mb-4">Bem-vindo ao Dashboard</h1>
+            {/* Conteúdo principal aqui */}
+          </main>
         </div>
       </div>
     </div>

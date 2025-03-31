@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { FaHome, FaCog, FaSignOutAlt } from "react-icons/fa";
-import logoFull from "../assets/logo-full.png";   // logo horizontal
-import logoIcon from "../assets/logo-icon.png";   // ícone da logo
+import logoFull from "../src/assets/logo-full.png";
+import logoIcon from "../src/assets/logo-icon.ico";
 
 export default function Sidebar({ collapsed }) {
   const { t } = useTranslation();
@@ -18,7 +18,9 @@ export default function Sidebar({ collapsed }) {
         <img
           src={collapsed ? logoIcon : logoFull}
           alt="Logo"
-          className="object-contain h-10 w-auto transition-all duration-300"
+          className={`transition-all duration-300 ${
+            collapsed ? "w-8 h-8" : "w-32 h-auto"
+          }`}
         />
       </div>
 
@@ -26,17 +28,17 @@ export default function Sidebar({ collapsed }) {
       <nav className="space-y-4 p-4">
         <a href="#" className="flex items-center gap-3 hover:text-blue-500">
           <FaHome />
-          {!collapsed && t("dashboard")}
+          {!collapsed && t('dashboard')}
         </a>
 
         <a href="#" className="flex items-center gap-3 hover:text-blue-500">
           <FaCog />
-          {!collapsed && t("settings")}
+          {!collapsed && t('settings')}
         </a>
 
         <a href="#" className="flex items-center gap-3 hover:text-blue-500 mt-20">
           <FaSignOutAlt />
-          {!collapsed && t("logout")}
+          {!collapsed && t('logout')}
         </a>
       </nav>
     </div>
