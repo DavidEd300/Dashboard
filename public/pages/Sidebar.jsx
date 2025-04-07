@@ -1,10 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { FaHome, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import logoFull from "../src/assets/logo-full.png";
 import logoIcon from "../src/assets/logo-icon.ico";
 
 export default function Sidebar({ collapsed }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  }  
 
   return (
     <div
@@ -35,11 +43,13 @@ export default function Sidebar({ collapsed }) {
           <FaCog />
           {!collapsed && t('settings')}
         </a>
-
-        <a href="#" className="flex items-center gap-3 hover:text-blue-500 mt-20">
+        <button 
+          onClick={handleLogout}
+          className="flex items-center gap-3 hover:text-red-500 mt20 texto-left w-full"
+        >
           <FaSignOutAlt />
-          {!collapsed && t('logout')}
-        </a>
+          {!collapsed &&t("logout")}
+        </button>  
       </nav>
     </div>
   );
